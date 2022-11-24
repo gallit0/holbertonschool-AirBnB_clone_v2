@@ -35,11 +35,13 @@ class DBStorage:
         all objects depending of the class name
         return a dictionary"""
         if cls is None:
+            my_list = [State, City, User, Place, Review, Amenity]
             my_dict = {}
-            obj = self.__session.query(eval(cls))
-            for i in obj:
-                key = "{}.{}".format(type(i).__name__, i.id)
-                my_dict[key] = i
+            for i in my_list:
+                allcls = self.__session.query(i)
+                for i in allcls:
+                    key = "{}.{}".format(type(i).__name__, i.id)
+                    my_dict[key] = i
             return my_dict
         else:
             if type(cls) == str:

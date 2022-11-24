@@ -118,19 +118,15 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             raise SyntaxError("Error of syntax")
         first_split = args.split(' ')
-        kwargs = {}
-        for i in range(1, len(first_split)):
-            key, value = tuple(first_split[i].split('='))
+        new_instance = HBNBCommand.classes[first_split[0]]()
+        parameters = first_split[1:]
+        for i in parameters:
+            key, value = i.split('=')
             if value[0] == '"':
                 value = value.strip('"').replace('_', ' ')
-            kwargs[key] = value
-        if kwargs == {}:
-            new_instance = eval(first_split[0])()
-        else:
-            new_instance = eval(first_split[0])(**kwargs)
-            storage.new(new_instance)
+            setattr(new_instance, key, value)
+        storage.save()
         print(new_instance.id)
-        new_instance.save()
 
     def help_create(self):
         """ Help information for the create method """
@@ -212,11 +208,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage.all().items():
+            for k, v in storage._FileStorage__objects.items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage.all().items():
+            for k, v in storage._FileStorage__objects.items():
                 print_list.append(str(v))
 
         print(print_list)

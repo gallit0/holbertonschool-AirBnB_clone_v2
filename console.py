@@ -118,15 +118,19 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             raise SyntaxError("Error of syntax")
         first_split = args.split(' ')
-        new_instance = HBNBCommand.classes[first_split[0]]()
-        parameters = first_split[1:]
-        for i in parameters:
-            key, value = i.split('=')
+        kwargs = {}
+        for i in range(1, len(first_split)):
+            key, value = tuple(first_split[i].split('='))
             if value[0] == '"':
                 value = value.strip('"').replace('_', ' ')
-            setattr(new_instance, key, value)
-        new_instance.save()
+            kwargs[key] = value
+        if kwargs == {}:
+            new_instance = eval(first_split[0])()
+        else:
+            new_instance = eval(first_split[0])(**kwargs)
+            storage.new(new_instance)
         print(new_instance.id)
+        new_instance.save()
 
     def help_create(self):
         """ Help information for the create method """

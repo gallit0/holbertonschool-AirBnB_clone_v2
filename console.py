@@ -128,7 +128,6 @@ class HBNBCommand(cmd.Cmd):
             new_instance = eval(first_split[0])()
         else:
             new_instance = eval(first_split[0])(**kwargs)
-            storage.new(new_instance)
         print(new_instance.id)
         new_instance.save()
 

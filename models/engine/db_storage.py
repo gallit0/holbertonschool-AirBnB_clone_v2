@@ -6,6 +6,7 @@ from sqlalchemy import create_engine
 from os import getenv
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
+from models.base_model import Base
 
 class DBStorage:
     """Class DBStorage"""
@@ -26,7 +27,6 @@ class DBStorage:
         """All function
         all objects depending of the class name
         return a dictionary"""
-        from models.base_model import Base
         from models.base_model import BaseModel
         from models.amenity import Amenity
         from models.city import City

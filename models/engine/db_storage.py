@@ -35,14 +35,12 @@ class DBStorage:
         all objects depending of the class name
         return a dictionary"""
         if cls is None:
-            my_list = [State, City, User, Place, Review, Amenity]
-            my_dict = {}
-            for i in my_list:
-                allcls = self.__session.query(i)
-                for i in allcls:
-                    key = "{}.{}".format(type(i).__name__, i.id)
-                    my_dict[key] = i
-            return my_dict
+            objs = self.__session.query(State).all()
+            #objs.extend(self.__session.query(City).all())
+            #objs.extend(self.__session.query(User).all())
+            #objs.extend(self.__session.query(Place).all())
+            #objs.extend(self.__session.query(Review).all())
+            #objs.extend(self.__session.query(Amenity).all())
         else:
             if type(cls) == str:
                 cls = eval(cls)

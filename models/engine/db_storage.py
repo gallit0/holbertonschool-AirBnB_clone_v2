@@ -37,8 +37,8 @@ class DBStorage:
         if cls:
             if type(cls) == str:
                 cls = eval(cls)
-        else:
             objs = self.__session.query(cls)
+        else:
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
             objs.extend(self.__session.query(User).all())

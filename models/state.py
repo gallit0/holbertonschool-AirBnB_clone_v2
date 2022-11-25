@@ -18,7 +18,7 @@ class State(BaseModel, Base):
         """Returns list of city instances in same state"""
         from models import storage
         my_list = []
-        for i in storage.all(City):
+        for i in list(storage.all(City).values()):
             if self.id == i.state_id:
                 my_list.append(i)
         return my_list

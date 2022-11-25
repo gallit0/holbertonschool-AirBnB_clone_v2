@@ -34,17 +34,17 @@ class DBStorage:
         """All function
         all objects depending of the class name
         return a dictionary"""
-        if cls is None:
+        if cls:
+            if type(cls) == str:
+                cls = eval(cls)
+        else:
+            objs = self.__session.query(cls)
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
             objs.extend(self.__session.query(User).all())
             objs.extend(self.__session.query(Place).all())
             objs.extend(self.__session.query(Review).all())
             objs.extend(self.__session.query(Amenity).all())
-        else:
-            if type(cls) == str:
-                cls = eval(cls)
-            objs = self.__session.query(cls)
         return {"{}.{}".format(type(o).__name__, o.id): o for o in objs} 
 
     def new(self, obj):

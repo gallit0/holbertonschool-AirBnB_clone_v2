@@ -31,21 +31,29 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """All function
-        all objects depending of the class name
-        return a dictionary"""
+        from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+        classes = {
+                    'State': State, 'User': User, 'Place': Place,
+                    'City': City, 'Amenity': Amenity,
+                    'Review': Review
+                  }
+        final_dictionary = {}
         if cls:
-            if type(cls) == str:
-                cls = eval(cls)
-            objs = self.__session.query(cls)
+            for object in self.__session.query(classes[str(cls)]):
+                key_auxiliar = str(cls) + '.' + object.id
+                final_dictionary[key_auxiliar] = object.to_dict()
         else:
-            objs = self.__session.query(State).all()
-            objs.extend(self.__session.query(City).all())
-            objs.extend(self.__session.query(User).all())
-            objs.extend(self.__session.query(Place).all())
-            objs.extend(self.__session.query(Review).all())
-            objs.extend(self.__session.query(Amenity).all())
-        return {"{}.{}".format(type(o).__name__, o.id): o for o in objs} 
+            for class_aux in classes.keys():
+                for object in self.__session.query(classes[class_aux]):
+                    key_auxiliar = str(class_aux) + '.' + object.id
+                    final_dictionary[key_auxiliar] = object.to_dict()
+                    #print(final_dictionary)
+        return final_dictionary
 
     def new(self, obj):
         """Add obj to session"""

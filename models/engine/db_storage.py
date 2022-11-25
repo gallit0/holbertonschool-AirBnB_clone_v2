@@ -7,6 +7,7 @@ from os import getenv
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 from models.base_model import Base
+from models.base_model import BaseModel
 
 class DBStorage:
     """Class DBStorage"""
@@ -27,7 +28,6 @@ class DBStorage:
         """All function
         all objects depending of the class name
         return a dictionary"""
-        from models.base_model import BaseModel
         from models.amenity import Amenity
         from models.city import City
         from models.place import Place
@@ -43,8 +43,8 @@ class DBStorage:
             objs.extend(self.__session.query(City).all())
             objs.extend(self.__session.query(User).all())
             objs.extend(self.__session.query(Place).all())
-            objs.extend(self.__session.query(Review).all())
-            objs.extend(self.__session.query(Amenity).all())
+            #objs.extend(self.__session.query(Review).all())
+            #objs.extend(self.__session.query(Amenity).all())
         return {"{}.{}".format(type(o).__name__, o.id): o for o in objs} 
 
     def new(self, obj):

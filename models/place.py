@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
@@ -31,12 +30,13 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, default=0, nullable=False)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
+
     amenity_ids = []
 
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         reviews = relationship('Review', backref='places', cascade='delete')
         amenities = relationship('Amenity', secondary='place_amenity',
-                                viewonly=False)
+                                 viewonly=False)
     else:
 
         @property

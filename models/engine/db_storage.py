@@ -15,10 +15,12 @@ from models.review import Review
 from models.state import State
 from models.user import User
 
+
 class DBStorage:
     """Class DBStorage"""
     __engine = None
     __session = None
+
     def __init__(self):
         """Constructor for DBStorage"""
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
@@ -45,7 +47,7 @@ class DBStorage:
             objs.extend(self.__session.query(Place).all())
             objs.extend(self.__session.query(Review).all())
             objs.extend(self.__session.query(Amenity).all())
-        return {"{}.{}".format(type(o).__name__, o.id): o for o in objs} 
+        return {"{}.{}".format(type(o).__name__, o.id): o for o in objs}
 
     def new(self, obj):
         """Add obj to session"""
@@ -63,7 +65,8 @@ class DBStorage:
     def reload(self):
         """Create tables in database"""
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
         ses = scoped_session(session_factory)
         self.__session = ses()
 

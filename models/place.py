@@ -50,7 +50,7 @@ class Place(BaseModel, Base):
         """Returns list of amenities associated with place"""
         from models import storage
         my_list = []
-        for i in storage.all(Amenity):
+        for i in storage.all(Amenity).values():
             if i.id in self.amenity_ids:
                 my_list.append(i)
         return my_list

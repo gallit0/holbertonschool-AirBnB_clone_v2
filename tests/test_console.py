@@ -8,6 +8,7 @@ from models.engine.file_storage import FileStorage
 from io import StringIO
 from unittest.mock import patch
 
+
 class TestConsole(unittest.TestCase):
 
     """Test console class"""

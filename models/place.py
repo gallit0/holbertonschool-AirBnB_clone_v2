@@ -7,14 +7,13 @@ from models.review import Review
 from models.amenity import Amenity
 
 
-metadata = Base.metadata
-
 association_table = Table(
-    "place_amenity", metadata, 
+    "place_amenity",
+    Base.metadata,
     Column("place_id", String(60), ForeignKey("places.id"), primary_key=True,
-           onupdate='CASCADE', ondelete='CASCADE', nullable=False),
+           onupdate='CASCADE', nullable=False),
     Column("amenity_id", String(60), ForeignKey("amenities.id"),
-           primary_key=True, onupdate='CASCADE', ondelete='CASCADE', nullable=False))
+           primary_key=True, onupdate='CASCADE', nullable=False))
 
 
 class Place(BaseModel, Base):
@@ -32,7 +31,7 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     reviews = relationship('Review', backref='places', cascade='delete')
     amenities = relationship('Amenity', secondary='place_amenity',
-                             backref='place', viewonly=False)
+                             backref='place' viewonly=False)
     amenity_ids = []
 
     @property

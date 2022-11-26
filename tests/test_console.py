@@ -10,10 +10,12 @@ from unittest.mock import patch
 
 class TestConsole(unittest.TestCase):
     """Test console class"""
+
     def test_create(self):
         with patch('sys.stdout', new=StringIO()) as strio:
             HBNBCommand().onecmd("create State")
             self.assertTrue(len(strio.getvalue()) > 0)
+
 
 if __name__ == "__main__":
     unittest.main()

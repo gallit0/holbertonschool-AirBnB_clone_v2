@@ -7,13 +7,14 @@ from models.review import Review
 from models.amenity import Amenity
 
 
+metadata = Base.metadata
+
 association_table = Table(
-    "place_amenity",
-    Base.metadata,
+    "place_amenity", metadata, 
     Column("place_id", String(60), ForeignKey("places.id"), primary_key=True,
-           onupdate='CASCADE', nullable=False),
+           onupdate='CASCADE', ondelete='CASCADE', nullable=False),
     Column("amenity_id", String(60), ForeignKey("amenities.id"),
-           primary_key=True, onupdate='CASCADE', nullable=False))
+           primary_key=True, onupdate='CASCADE', ondelete='CASCADE', nullable=False))
 
 
 class Place(BaseModel, Base):

@@ -9,6 +9,7 @@ from io import StringIO
 from unittest.mock import patch
 
 class TestConsole(unittest.TestCase):
+
     """Test console class"""
 
     def test_create(self):

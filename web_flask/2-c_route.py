@@ -21,9 +21,8 @@ def hbnb_hello():
 
 @app.route("/c/<text>")
 def c_route(text):
-       text.replace('_', ' ')
-       return "C " + text
-       
+        res = text.replace('_', ' ')
+        return "C " + res
 
 
 if __name__ == '__main__':

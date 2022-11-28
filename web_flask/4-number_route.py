@@ -32,7 +32,7 @@ def python_route(text="is cool"):
         return "Python " + res
 
 
-@app.route("/number/<n>")
+@app.route("/number/<int:n>")
 def number_route(n):
         return n + " is a number"
 

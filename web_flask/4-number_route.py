@@ -34,10 +34,7 @@ def python_route(text="is cool"):
 
 @app.route("/number/<n>")
 def number_route(n):
-        if type(n) is int:
-                return n + " is a number"
-        else:
-                return 404
+        return n + " is a number"
 
 
 if __name__ == '__main__':

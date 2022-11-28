@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module 0-hello_route
+Module 1-hbnb_route
 """
 from flask import Flask
 

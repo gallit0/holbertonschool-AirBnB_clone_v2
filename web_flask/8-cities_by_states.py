@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route("/states_list")
+@app.route("/cities_by_states")
 def number_odd_or_even_route():
         from models import storage
         from models.state import State

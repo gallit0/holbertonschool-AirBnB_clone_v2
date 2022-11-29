@@ -14,8 +14,7 @@ def states_route():
         from models import storage
         from models.state import State
         sts = storage.all(State)
-        allsts = True
-        return render_template("9-states.html", sts=sts, allsts=allsts)
+        return render_template("9-states.html", sts=sts)
 
 
 @app.route("/states/<id>")

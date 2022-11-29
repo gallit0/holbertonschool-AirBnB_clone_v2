@@ -18,7 +18,7 @@ def states_route():
         return render_template("9-states.html", sts=sts, allsts=allsts)
 
 
-@app.route("/states/<id>")
+@app.route("/states/<int:id>")
 def state_with_id(id):
         from models import storage
         from models.state import State
@@ -29,7 +29,8 @@ def state_with_id(id):
                 if i.id == id:
                         st = State.id
 
-        return render_template("9-states.html", sts=sts, cts=cts, st_id=id, st=st)
+        return render_template("9-states.html",
+                                sts=sts, cts=cts, st_id=id, st=st)
 
 
 @app.teardown_appcontext

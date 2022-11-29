@@ -25,8 +25,10 @@ def state_with_id(id):
         cts = storage.all(City)
         sts = storage.all(State)
         for i in sts.values():
+                st = False
                 if i.id == id:
                         st = i.name
+                        break
 
         return render_template("9-states.html",
                                sts=sts, cts=cts, st_id=id, st=st)

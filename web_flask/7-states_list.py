@@ -13,8 +13,8 @@ app.url_map.strict_slashes = False
 def number_odd_or_even_route():
         from models import storage
         from models.state import State
-        sts = sorted(list(storage.all(State).values()))
-        return render_template("7-states_list.html", sts)
+        sts = storage.all(State)
+        return render_template("7-states_list.html", sts=sts)
 
 
 @app.teardown_appcontext

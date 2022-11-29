@@ -16,7 +16,7 @@ def number_odd_or_even_route():
         from models.city import City
         sts = storage.all(State)
         cts = storage.all(City)
-        return render_template("7-states_list.html", sts=sts, cts=cts)
+        return render_template("8-cities_by_states.html", sts=sts, cts=cts)
 
 
 @app.teardown_appcontext

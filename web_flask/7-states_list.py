@@ -18,7 +18,7 @@ def number_odd_or_even_route():
 
 
 @app.teardown_appcontext
-def deletesqlalch():
+def teardown_db(exception):
         from models import storage
         storage.close()
 

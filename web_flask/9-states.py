@@ -15,15 +15,19 @@ def teardown(exit):
 
 
 @app.route("/states")
+def cities_by_states():
+    s = storage.all('State')
+    return render_template('8-cities_by_states.html', states=s)
+
 @app.route("/states/<id>")
-def cities_by_states(id=None):
+def states(id=None):
     s = storage.all('State')
     if id:
         for i in s:
             sp = i.split('.')
             if sp[1] != id:
                 del s[sp]
-    return render_template('8-cities_by_states.html', states=s)
+    return render_template('9-states.html', states=s)
 
 
 if __name__ == "__main__":

@@ -17,10 +17,12 @@ def teardown(exit):
 @app.route("/states")
 @app.route("/states/<id>")
 def cities_by_states(id=None):
+    s = storage.all('State')
     if id is not None:
-        s = storage.all('State')[id]
-    else:
-        s = storage.all('State')
+        for i in s:
+            sp = i.split('.')
+            if sp[1] != id:
+                del s[sp]
     return render_template('8-cities_by_states.html', states=s)
 
 

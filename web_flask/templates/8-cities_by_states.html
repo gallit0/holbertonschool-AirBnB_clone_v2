@@ -11,7 +11,7 @@
                     {{ i.id }}:<B>{{ i.name }}</B>
 
                     <UL>
-                        {% for j in i.cities()|sort(attribute="name") %}
+                        {% for j in i.cities|sort(attribute="name") %}
                         <LI>
                             {{ j.id }}:<B>{{ j.name }}</B>
                         </LI>

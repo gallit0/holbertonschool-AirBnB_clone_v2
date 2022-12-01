@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Module 1-hbnb_route
-"""
+"""task 0"""
 from flask import Flask
 
 
@@ -10,15 +8,14 @@ app.url_map.strict_slashes = False
 
 
 @app.route("/")
-def hello_hbnb():
+def index():
     return "Hello HBNB!"
 
 
 @app.route("/hbnb")
-def hbnb_hello():
-        return "HBNB"
+def hbnb():
+    return "HBNB"
 
 
-if __name__ == '__main__':
-        app.run(host=('0.0.0.0'),
-                port=int('5000'), threaded=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

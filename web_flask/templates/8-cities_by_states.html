@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <TITLE>HBNB</TITLE>
-    </HEAD>
-    <BODY>
-        <H1>States</H1>
-        <UL>
-                {% for i in sts.values()|sort(attribute="name") %}
+<html lang="en">
+    <head>
+        <title>HBNB</title>
+    </head>
+    <body>
+        <h1>States</h1>
+        <ul>
+            {% for i in states.values()|sort(attribute="name") %}
                 <LI>
-                        {{ i.id }}: <B>{{ i.name }}</B>
-                        <UL>
-                                {% for j in cts.values()|sort(attribute="name") %}
-                                        {% if j.state_id == i.id %}
-                                                <LI>
-                                                        {{ j.id }}: <B>{{ j.name }}</B>
-                                                </LI>
-                                        {% endif %}
-                                {% endfor %}
-                        </UL>
+                    {{ i.id }}:<B>{{ i.name }}</B>
+
+                    <UL>
+                        {% for j in i.cities()|sort(attribute="name") %}
+                        <LI>
+                            {{ j.id }}:<B>{{ j.name }}</B>
+                        </LI>
+                        {% endfor %}                        
+                    </UL>
                 </LI>
-                {% endfor %}
-        </UL>
-    </BODY>
-</HTML>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

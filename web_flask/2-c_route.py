@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module c_route
+flask
 """
 from flask import Flask
 
@@ -10,21 +10,28 @@ app.url_map.strict_slashes = False
 
 
 @app.route("/")
-def hello_hbnb():
+def index():
+    """
+    hbnb
+    """
     return "Hello HBNB!"
 
 
 @app.route("/hbnb")
-def hbnb_hello():
-        return "HBNB"
+def hbnb():
+    """
+    hbnb
+    """
+    return "HBNB"
 
 
 @app.route("/c/<text>")
-def c_route(text):
-        res = text.replace('_', ' ')
-        return "C " + res
+def c(text):
+    """
+    C is fun
+    """
+    return "C {}".format(text.replace("_", " "))
 
 
-if __name__ == '__main__':
-        app.run(host=('0.0.0.0'),
-                port=int('5000'), threaded=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

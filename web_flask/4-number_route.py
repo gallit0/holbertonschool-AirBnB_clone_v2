@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module number_route
+flask
 """
 from flask import Flask
 
@@ -10,33 +10,39 @@ app.url_map.strict_slashes = False
 
 
 @app.route("/")
-def hello_hbnb():
+def index():
+    """
+    hbnb
+    """
     return "Hello HBNB!"
 
 
 @app.route("/hbnb")
-def hbnb_hello():
-        return "HBNB"
+def hbnb():
+    """
+    hbnb
+    """
+    return "HBNB"
 
 
 @app.route("/c/<text>")
-def c_route(text):
-        res = text.replace('_', ' ')
-        return "C " + res
+def c(text):
+    """
+    C is fun
+    """
+    return "C {}".format(text.replace("_", " "))
 
 
 @app.route("/python")
 @app.route("/python/<text>")
-def python_route(text="is cool"):
-        res = text.replace('_', ' ')
-        return "Python " + res
+def python(text='is cool'):
+    return "Python {}".format(text.replace("_", " "))
 
 
-@app.route("/number/<int:n>")
-def number_route(n):
-        return "{} is a number".format(n)
+@app.route('/number/<int:n>')
+def number(n):
+    return '{} is a number'.format(n)
 
 
-if __name__ == '__main__':
-        app.run(host=('0.0.0.0'),
-                port=int('5000'), threaded=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

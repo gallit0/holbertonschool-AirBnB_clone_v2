@@ -18,7 +18,7 @@ def teardown(exit):
 @app.route("/states/<id>")
 def cities_by_states(id=None):
     s = storage.all('State')
-    if id is not None:
+    if id:
         for i in s:
             sp = i.split('.')
             if sp[1] != id:

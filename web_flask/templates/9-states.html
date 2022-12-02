@@ -8,9 +8,9 @@
         <h1>States</h1>
         <ul>
             {% for i in states.values()|sort(attribute="name") %}
-            <li>
+            <LI>
                 {{ i.id }}: <b>{{ i.name }}</b>
-            </li>
+            </LI>
             {% endfor %}
         </ul>
         {% elif states is none %}
@@ -20,9 +20,9 @@
         <h3>Cities:</h3>
         <ul>
             {% for i in states.cities %}|sort(attribute="name") %}
-            <li>
+            <LI>
                 {{ i.id }}: <b>{{ i.name }}</b>
-            </li>
+            </LI>
             {% endfor %}
         </ul>
         {% endif %}

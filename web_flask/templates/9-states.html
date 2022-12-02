@@ -19,7 +19,7 @@
         <h1>State: {{ states.name }}</h1>
         <h3>Cities:</h3>
         <ul>
-            {% for i in states.cities %}|sort(attribute="name") %}
+            {% for i in states.cities |sort(attribute="name") %}
             <LI>
                 {{ i.id }}: <b>{{ i.name }}</b>
             </LI>

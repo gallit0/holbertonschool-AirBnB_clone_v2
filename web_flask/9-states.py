@@ -22,12 +22,10 @@ def cities_by_states():
 @app.route("/states/<id>")
 def states(id=None):
     s = storage.all('State')
-    if id:
-        for i in s:
-            sp = i.split('.')
-            if sp[1] != id:
-                del s[sp]
-    return render_template('9-states.html', states=s)
+    for st in s.values():
+        if st.id == id:
+            return render_template('9-states.html', states=s, id=st.id)
+    return render_template('9-states.html', state=None)
 
 
 if __name__ == "__main__":

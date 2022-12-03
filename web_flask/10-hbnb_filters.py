@@ -18,7 +18,7 @@ def teardown(exit):
 def index():
     s = storage.all('State').values()
     a = storage.all('Ameity').values()
-    return render_template('6-index.html', states=s, amenities=a)
+    return render_template('10-hbnb_filters.html', states=s, amenities=a)
 
 
 if __name__ == "__main__":
